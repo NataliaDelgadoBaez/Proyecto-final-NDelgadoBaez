@@ -1,12 +1,20 @@
 from django import forms
  
-class Discoformulario(forms.Form):
-    nombre= forms.CharField()
-    autor= forms.CharField()
+class Crearalbumform(forms.Form):
+    album= forms.CharField()
+    artista= forms.CharField()
     año = forms.IntegerField()
+    precio = forms.IntegerField()
     
-class BuscaDiscoform(forms.Form):
+class Buscaralbumform(forms.Form):
+    album= forms.CharField()
+    artista= forms.CharField()
+    
+    
+class Mostraralbumform(forms.Form):
     nombre= forms.CharField()
+    artista= forms.CharField()
+    
     
     
 

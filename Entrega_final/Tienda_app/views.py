@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from Tienda_app.models import Disco
-from Tienda_app.forms import Discoformulario, BuscaDiscoform
+from Tienda_app.forms import Crearalbumform, Buscaralbumform
 
 
 
@@ -11,7 +11,7 @@ def tienda(request):
     return render(request, "Tienda_app/tienda.html")
 
 def blog(request):
-    return render(request, "templates/blog.html")
+    return render(request, "tienda_app/blog.html")
 
 def busca_favorito(request):
     return render(request, "Tienda_app/busca tu favorito.html")
@@ -31,42 +31,56 @@ def crear_cuenta(request):
 def tu_opinion(request):
     return render(request, "Tienda_app/tu opinion.html")
 
-def discos_siempre(request):
-    return render(request, "Tienda_app/discos de siempre.html")
+def musica_siempre(request):
+    return render(request, "Tienda_app/Musica de siempre.html")
+
+def musica_hoy(request):
+    return render(request, "Tienda_app/Musica de hoy.html")
+
+def conocenos(request):
+    return render(request, "Tienda_app/conocenos.html")
+
+def entrevistas(request):
+    return render(request, "Tienda_app/entrevistas.html")
 
 
-def Discoforms (request):
+def Agregaralbum (request):
  
     if request.method == "POST":
  
-        miFormulario = Discoformulario(request.POST) 
+        miFormulario = Agregaralbum(request.POST) 
         print(miFormulario)
  
         if miFormulario.is_valid():
             informacion = miFormulario.cleaned_data
-            disco =  Disco(nombre=request.POST['nombre'],autor=request.POST['autor'], año=request.POST['año'])
-            disco.save()
+            album=  Disco(nombre=request.POST['album'],autor=request.POST['artista'], año=request.POST['año'], precio=request.POST['precio'])
+            album.save()
             return render(request, "Tienda_app/index.html")
     else:
-            miFormulario = Discoformulario()
+            miFormulario = Crearalbumform()
  
-            return render(request, "Tienda_app/Discoformulario.html", {"miFormulario": miFormulario})
+            return render(request, "Tienda_app/agregar album.html", {"miFormulario": miFormulario})
 
 
-def Buscardisco (request):
- 
+def Buscar_album(request):
     if request.method == "POST":
- 
-        miFormulario = Buscardisco(request.POST) 
-        print(miFormulario)
- 
+        miFormulario = Buscaralbumform(request.POST) 
+
         if miFormulario.is_valid():
             informacion = miFormulario.cleaned_data
-            discos = Disco.objects.filter(nombre_icontains=informacion('disco'))
             
-            return render(request, "Tienda_app/buscar disco.html",{"discos": discos})
-    else:
-            miFormulario = BuscaDiscoform()
- 
-            return render(request, "Tienda_app/mostrar busqueda.html", {"miFormulario": miFormulario})
+            discos = Disco.objects.filter(nombre__icontains=informacion["album"])
 
+            return render(request, "Tienda_app/mostra tu favorito.html", {"album": discos})
+    else:
+        miFormulario = Buscaralbumform()
+
+    return render(request, "Tienda_app/busca tu favorito.html", {"miFormulario": miFormulario})
+
+def Mostraralbum (request):
+
+    discos = Disco.objects.all() 
+
+    contexto= {"cursos":discos} 
+
+    return render(request, "Tienda_app/mostra tu favorito.html",contexto)
