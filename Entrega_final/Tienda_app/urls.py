@@ -1,5 +1,6 @@
 from django.urls import path
 from Tienda_app import views
+from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     
@@ -9,9 +10,11 @@ urlpatterns = [
     path('busca tu favorito/', views.Buscar_album, name="Busca tu favorito"),
     path('mostra tu favorito/', views.Mostraralbum, name="Mostra tu favorito"),
     path('carrito/', views.carrito, name="Carrito"),
+    path('carrito/', views.final_carrito, name="Fcarrito"),
     path('destacados/', views.destacados, name="Destacados"),
-    path('ingresa/', views.iniciar_sesion, name="Ingresa"),
-    path('soy nuevo/', views.crear_cuenta, name="Soy nuevo"),
+    path('login/', views.login_request, name="Login"),
+    path('register/', views.register, name="Soy nuevo"),
+    path('logout/', LogoutView.as_view(template_name='Tienda_app/logout.html'), name="Logout"),
     path('tu opinion/', views.tu_opinion, name="Tu opinion"),
     path('crear album/', views.Agregaralbum, name="Crear album"),
     path('musica de siempre/', views.musica_siempre, name="Musica de siempre"),

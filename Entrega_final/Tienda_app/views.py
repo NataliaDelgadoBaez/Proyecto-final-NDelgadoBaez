@@ -1,8 +1,54 @@
 from django.shortcuts import render
 from Tienda_app.models import Disco
-from Tienda_app.forms import Crearalbumform, Buscaralbumform
+from Tienda_app.forms import Crearalbumform, Buscaralbumform, UserRegisterForm
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, logout, authenticate
 
 
+
+def login_request(request):
+
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data = request.POST)
+
+        if form.is_valid(): 
+
+            usuario = form.cleaned_data.get('username')
+            clave = form.cleaned_data.get('password')
+
+            nombre_usuario = authenticate(username= usuario, password=clave)
+
+            if usuario is not None:
+                login (request, nombre_usuario)
+                return render(request, "Tienda_app/tienda.html", {"mensaje":f"Has iniciado sesion, Bienvenido {usuario}"})
+            else:
+                return render(request, "Tienda_app/login.html", {"mensaje":"Usuario o contraseña incorrecta"})
+           
+        else:
+
+            return render(request,"Tienda_app/login.html", {"mensaje":"Formulario erroneo"})
+
+    form = AuthenticationForm()
+
+    return render(request, "Tienda_app/login.html", {"form": form})
+
+def register(request):
+
+      if request.method == 'POST':
+
+            
+            form = UserRegisterForm(request.POST)
+            if form.is_valid():
+
+                  username = form.cleaned_data['username']
+                  form.save()
+                  return render(request,"Tienda_app/register.html")
+
+      else:
+                 
+            form = UserRegisterForm()     
+
+      return render(request,"Tienda_app/soy nuevo.html" ,  {"form":form})
 
 def inicio(request):
     return render(request, "Tienda_app/index.html")
@@ -19,14 +65,14 @@ def busca_favorito(request):
 def carrito(request):
     return render(request, "Tienda_app/carrito.html")
 
+def final_carrito(request):
+    return render(request, "Tienda_app/fcarrito.html")
+
 def destacados(request):
     return render(request, "Tienda_app/destacados.html")
 
 def iniciar_sesion(request):
-    return render(request, "Tienda_app/ingresa.html")
-
-def crear_cuenta(request):
-    return render(request, "Tienda_app/soy nuevo.html")
+    return render(request, "Tienda_app/login.html")
 
 def tu_opinion(request):
     return render(request, "Tienda_app/tu opinion.html")
@@ -76,6 +122,7 @@ def Buscar_album(request):
         miFormulario = Buscaralbumform()
 
     return render(request, "Tienda_app/busca tu favorito.html", {"miFormulario": miFormulario})
+
 
 def Mostraralbum (request):
 
