@@ -12,7 +12,7 @@
         body {
             margin: 0;
             padding: 0;
-            background-image: url"(% static 'assets/portada.jpg' %})"; 
+            background-image: url("/static/Tienda_app/assets/portada.jpg"); 
             background-size: cover;
             background-position: center;
         }
@@ -40,14 +40,19 @@
             margin-top: 20px;
         }
 
-        button {
+        .button-container {
+            display: flex;
+        }
+
+        a {
             background-color: transparent;
             border: 4px solid rgb(210, 252, 96);
             color: rgb(210, 252, 96);
-            /*padding: 10px 20px;*/
-            font-size: 1.2rem;
+            padding: 10px 20px;
+            font-size: 1.5rem;
             margin: 0 100px;
         }
+
     </style>
 </head>
 <body>
@@ -55,11 +60,11 @@
         <h1>RoCkoLa</h1> 
         <h2>CuLtUrAl</h2>
         <div class="button-container">
-            <button id="opcion1"><b>BLOG</b></button>
-            <button id="opcion2"><b>TIENDA</b></button>
+            <a href="{% url 'Blog' %}" id="opcion1"><b>BLOG</b></a>
+            <a href="{% url 'Tienda' %}" id="opcion1"><b>TIENDA</b></a>
         </div>
     </div>
-    <script src="{% static 'Tienda_app/script.js' %}"></script>
+    <script src=>"/static/Tienda_app/assets/portada.jpg"</script>
 </body>
 </html>
 
