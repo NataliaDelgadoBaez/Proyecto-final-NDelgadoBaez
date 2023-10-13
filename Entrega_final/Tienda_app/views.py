@@ -7,23 +7,29 @@ from Tienda_app.forms import Discoformulario, BuscaDiscoform
 def inicio(request):
     return render(request, "Tienda_app/index.html")
 
-def discos(request):
-    return render(request, "Tienda_app/discos.html")
+def tienda(request):
+    return render(request, "Tienda_app/tienda.html")
 
-def discos_comprados(request):
-    return render(request, "Tienda_app/discos comprados.html")
+def blog(request):
+    return render(request, "templates/blog.html")
 
-def discos_vendidos(request):
-    return render(request, "Tienda_app/discos vendidos.html")
+def busca_favorito(request):
+    return render(request, "Tienda_app/busca tu favorito.html")
 
-def usuarios(request):
-    return render(request, "Tienda_app/usuarios.html")
+def carrito(request):
+    return render(request, "Tienda_app/carrito.html")
+
+def destacados(request):
+    return render(request, "Tienda_app/destacados.html")
 
 def iniciar_sesion(request):
-    return render(request, "Tienda_app/iniciar sesion.html")
+    return render(request, "Tienda_app/ingresa.html")
 
 def crear_cuenta(request):
-    return render(request, "Tienda_app/crear cuenta.html")
+    return render(request, "Tienda_app/soy nuevo.html")
+
+def tu_opinion(request):
+    return render(request, "Tienda_app/tu opinion.html")
 
 
 def Discoforms (request):
