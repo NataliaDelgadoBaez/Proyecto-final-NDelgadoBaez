@@ -31,6 +31,9 @@ def crear_cuenta(request):
 def tu_opinion(request):
     return render(request, "Tienda_app/tu opinion.html")
 
+def discos_siempre(request):
+    return render(request, "Tienda_app/discos de siempre.html")
+
 
 def Discoforms (request):
  
