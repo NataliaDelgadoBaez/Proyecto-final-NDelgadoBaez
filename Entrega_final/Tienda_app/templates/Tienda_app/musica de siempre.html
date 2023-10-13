@@ -1,56 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda de Discos de Música</title>
-    <!-- Agrega los enlaces a las bibliotecas de Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
-    <!-- Barra de navegación de Bootstrap -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">RoCkOlA CuLtUrAl</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto"> 
-                <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'Inicio' %}">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'Conocenos' %}">Destacados</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'Musica de hoy' %}">Carrito</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'Musica de hoy' %}">Busca tu favorito</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'Entrevistas' %}">Tu opinion</a>
-                </li>
-                
-            </ul>
-        </div>
-    </nav>
+{% extends 'Tienda_app/base_blog.html' %}
+{% load static %}
 
-    {% block section1 %}
-        {% endblock %}
-        
-        {% block main %}
-        {% endblock %}
-        
+{% block section1 %}
+
+<style>
+    .maintenance-page {
+        text-align: center;
+        margin-top: 100px;
+    }
     
-    <!-- Agrega el enlace al archivo JavaScript de Bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+    .maintenance-message {
+        font-size: 24px;
+    }
+</style>
 
+<div class="container">
+    <div class="maintenance-page">
+        <span class="maintenance-icon"><i class="fas fa-tools"></i></span>
+        <p class="maintenance-message">Sitio en Mantenimiento. Estaremos de vuelta pronto.</p>
+    </div>
+</div>
 
+{% endblock %}
 
 
 
