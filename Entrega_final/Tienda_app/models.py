@@ -18,9 +18,7 @@ class Producto(models.Model):
     artista = models.CharField(max_length=40)
     precio = models.IntegerField()
    
-class Carrito(models.Model):
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
-    productos = models.ManyToManyField(Producto)
+
 
 
 

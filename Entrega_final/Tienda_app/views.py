@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from Tienda_app.models import Disco, Producto, Carrito
+from Tienda_app.models import Disco
 from Tienda_app.forms import Crearalbumform, Buscaralbumform, UserRegisterForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
-from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+
 
 
 
@@ -64,17 +65,12 @@ def blog(request):
 def busca_favorito(request):
     return render(request, "Tienda_app/busca tu favorito.html")
 
+@login_required
 def carrito(request):
     return render(request, "Tienda_app/carrito.html")
 
 def final_carrito(request):
     return render(request, "Tienda_app/fcarrito.html")
-
-def agregar_al_carrito(request, producto_id):
-    producto = Producto.objects.get(id=producto_id)
-    carrito, created = Carrito.objects.get_or_create(usuario=request.user)
-    carrito.productos.add(producto)
-    return redirect('carrito')
 
 def destacados(request):
     return render(request, "Tienda_app/destacados.html")
